@@ -13,21 +13,29 @@ function light() {
     bodyClass.remove("dark")
 };
 
+if (localStorage.getItem("Theme")) {
+    bodyClass.add(localStorage.getItem("Theme"))
+}
+
 function changeTheme() {
     if (winmatch.matches) {
         Dark()
+        localStorage.setItem("Theme", "dark")
     }
     else {
         light()
+        localStorage.setItem("Theme", "light")
     }
 };
 
 function togl() {
     if (bodyClass.contains("dark")) {
         light()
+        localStorage.setItem("Theme", "light")
     }
     else {
         Dark()
+        localStorage.setItem("Theme", "dark")
     }
 };
 
@@ -38,6 +46,4 @@ winmatch.addEventListener("change", ()=>{
 
 let chng = content.addEventListener("click", (strg)=>{
     togl()
-    // localStorage.setItem("Theme", JSON.stringify(strg.target.offsetParent.classList.value))
-    // console.log(strg.target.offsetParent.classList.value)
 });
